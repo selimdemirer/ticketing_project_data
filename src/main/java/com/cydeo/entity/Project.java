@@ -33,7 +33,7 @@ public class Project extends BaseEntity{
     private Status projectStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "maanger_id")
+    @JoinColumn(name = "manager_id")
     private User assignedManager;
 
 }

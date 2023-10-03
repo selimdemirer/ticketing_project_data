@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@Where(clause = "is_deleted=false")
+@Where(clause = "is_deleted=false")  //for deleting operation
 public class User extends BaseEntity {
 
     private String firstName;

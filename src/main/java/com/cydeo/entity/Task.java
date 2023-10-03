@@ -1,9 +1,7 @@
 package com.cydeo.entity;
 
-import com.cydeo.dto.ProjectDTO;
-import com.cydeo.dto.UserDTO;
 import com.cydeo.enums.Status;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +22,7 @@ public class Task extends BaseEntity{
     private Project project;
 
     @ManyToOne(fetch = FetchType.LAZY);
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "assigned_employee_id")
     private User assignedEmployee;
 
     private String taskSubject;

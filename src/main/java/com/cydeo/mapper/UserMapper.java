@@ -12,8 +12,8 @@ public class UserMapper {
 
     private final ModelMapper modelMapper;
 
-    public UserMapper(ModelMapper modalMapper) {
-        this.modelMapper = modalMapper;
+    public UserMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
     }
 
     public User convertToEntity(UserDTO dto){

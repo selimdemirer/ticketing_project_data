@@ -11,8 +11,8 @@ public class RoleMapper {
 
     private ModelMapper modelMapper;
 
-    public RoleMapper(ModelMapper modalMapper) {
-        this.modelMapper = modalMapper;
+    public RoleMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
     }
 
     public Role convertToEntity(RoleDTO dto){

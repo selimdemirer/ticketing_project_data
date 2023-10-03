@@ -40,9 +40,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(UserDTO user) {
+    public void save(UserDTO userDTO) {
 
-        userRepository.save(userMapper.convertToEntity(user));
+        userRepository.save(userMapper.convertToEntity(userDTO));
 
     }
 
@@ -80,4 +80,14 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
     }
+
+    @Override
+    public List<UserDTO> listAllByRole(String role) {
+
+        List<User> users = userRepository.findByRoleDescriptionIgnoreCase("manager");
+
+        return users.stream().map(userMapper::convertToDTO).collect(Collectors.toList());
+
+    }
+
 }

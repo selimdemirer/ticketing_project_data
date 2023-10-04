@@ -85,6 +85,8 @@ public class ProjectServiceImpl implements ProjectService {
 
         projectRepository.save(project);
 
+        taskService.deleteByProject(projectMapper.convertToDTO(project));
+
     }
 
     @Override

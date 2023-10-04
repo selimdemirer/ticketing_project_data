@@ -96,6 +96,8 @@ public class ProjectServiceImpl implements ProjectService {
         project.setProjectStatus(Status.COMPLETE);
         projectRepository.save(project);
 
+        taskService.completeByProject(projectMapper.convertToDTO(project));
+
     }
 
     @Override
@@ -103,7 +105,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         //Final Goal: hey DB, give me all projects assigned to manager in the system
                                 //this part will come security in the future
-        UserDTO currentUserDTO = userService.findByUserName("dasd");
+        UserDTO currentUserDTO = userService.findByUserName("harold@manager.com");
         User user = userMapper.convertToEntity(currentUserDTO);
 
         List<Project> list = projectRepository.findAllByAssignedManager(user);

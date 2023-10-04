@@ -1,7 +1,6 @@
 package com.cydeo.controller;
 
 import com.cydeo.dto.ProjectDTO;
-import com.cydeo.dto.UserDTO;
 import com.cydeo.service.ProjectService;
 import com.cydeo.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -94,18 +94,18 @@ public class ProjectController {
 
     }
 
-//    @GetMapping("/manager/project-status")
-//    public String getProjectByManager(Model model) {
-//
-//        UserDTO manager = userService.findById("john@cydeo.com");
-//        List<ProjectDTO> projects = projectService.getCountedListOfProjectDTO(manager);
-//
-//        model.addAttribute("projects", projects);
-//
-//        return "/manager/project-status";
-//
-//    }
-//
+    @GetMapping("/manager/project-status")
+    public String getProjectByManager(Model model) {
+
+
+        List<ProjectDTO> projects = projectService.listAllProjectDetails();
+
+        model.addAttribute("projects", projects);
+
+        return "/manager/project-status";
+
+    }
+
 //    @GetMapping("/manager/complete/{projectCode}")
 //    public String managerCompleteProject(@PathVariable("projectCode") String projectCode) {
 //        projectService.complete(projectService.findById(projectCode));

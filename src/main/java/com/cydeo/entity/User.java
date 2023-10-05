@@ -13,11 +13,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@Where(clause = "is_deleted=false")  //for deleting operation
+//@Where(clause = "is_deleted=false")  //for deleting operation  // select * from users where id=4 and is_deleted=false;
 public class User extends BaseEntity {
 
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String userName;
     private String passWord;
     private boolean enabled;

@@ -3,6 +3,7 @@ package com.cydeo.service.impl;
 import com.cydeo.converter.RoleDtoConverter;
 import com.cydeo.dto.RoleDTO;
 import com.cydeo.entity.Role;
+import com.cydeo.mapper.MapperUtil;
 import com.cydeo.mapper.RoleMapper;
 import com.cydeo.repository.RoleRepository;
 import com.cydeo.service.RoleService;
@@ -16,10 +17,12 @@ public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
     private final RoleMapper roleMapper;
+    private final MapperUtil mapperUtil;
 
-    public RoleServiceImpl(RoleRepository roleRepository, RoleMapper roleMapper, RoleDtoConverter roleDtoConverter) {
+    public RoleServiceImpl(RoleRepository roleRepository, RoleMapper roleMapper, RoleDtoConverter roleDtoConverter, MapperUtil mapperUtil) {
         this.roleRepository = roleRepository;
         this.roleMapper = roleMapper;
+        this.mapperUtil = mapperUtil;
     }
 
     //controller called me and requesting all RoleDTOs so it can show in the drop-down in the UI
@@ -37,7 +40,11 @@ public class RoleServiceImpl implements RoleService {
         //I already created a class called RoleMapper and there are methods for me that will make this conversion
         //All I need to do is DI and implement the methods!
 
-        return roleList.stream().map(roleMapper::convertToDTO).collect(Collectors.toList()); //because method converts only one object, but we created a for loop through stream!;
+//        return roleList.stream().map(roleMapper::convertToDTO).collect(Collectors.toList());
+//        return roleList.stream().map(role -> mapperUtil.convert(role,RoleDTO.class)).collect(Collectors.toList());
+        return roleList.stream().map(role -> mapperUtil.convert(role,new RoleDTO())).collect(Collectors.toList());
+
+        //because method converts only one object, but we created a for loop through stream!;
     }
 
     @Override

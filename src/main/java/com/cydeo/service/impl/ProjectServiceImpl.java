@@ -79,8 +79,8 @@ public class ProjectServiceImpl implements ProjectService {
     public void delete(String code) {
 
         Project project = projectRepository.findByProjectCode(code);
-        project.setIsDeleted(true);
 
+        project.setIsDeleted(true);
         project.setProjectCode(project.getProjectCode() + "-" + project.getId());  // SP03-4
 
         projectRepository.save(project);
